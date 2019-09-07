@@ -122,54 +122,23 @@
             <div class="container-fluid">
 
                   <div class="section-data">
-
+                        @foreach(\App\Service::all() as $key => $value)
                         <div class="row">
                               <div class="col-md-2"></div>
                               <div class="col-md-2 section-index wow fadeInUp" data-wow-delay="0.3s">02</div>
-                              <div class="col-md-8 section-heading wow fadeInUp" data-wow-delay="0.4s">What we do</div>
+                              <div class="col-md-8 section-heading wow fadeInUp" data-wow-delay="0.4s">{{$value->judul}}</div>
                         </div>
 
                         <div class="row service">
                               <div class="col-md-4"></div>
                               <div class="col-md-3 wow fadeInUp" data-wow-delay="0.5s">
-                                    <div class="icon">
-                                          <ion-icon name="finger-print"></ion-icon>
-                                    </div>
-                                    <div class="icon-title">
-                                          Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                                    </div>
-                              </div>
+                                   
+                                   {!! $value->isi !!}
 
-                              <div class="col-md-3 wow fadeInUp" data-wow-delay="0.6s">
-                                          <div class="icon">
-                                                <ion-icon name="link"></ion-icon>
-                                          </div>
-                                          <div class="icon-title">
-                                                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                                          </div>
                               </div>
                         </div>
-
-                        <div class="row service">
-                                    <div class="col-md-4"></div>
-                                    <div class="col-md-3 wow fadeInUp" data-wow-delay="0.7s">
-                                          <div class="icon">
-                                                <ion-icon name="cloud-upload"></ion-icon>
-                                          </div>
-                                          <div class="icon-title">
-                                                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                                          </div>
-                                    </div>
-      
-                                    <div class="col-md-3 wow fadeInUp" data-wow-delay="0.8s">
-                                                <div class="icon">
-                                                      <ion-icon name="share"></ion-icon>
-                                                </div>
-                                                <div class="icon-title">
-                                                      Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                                                </div>
-                                    </div>
-                              </div>
+                        @endforeach
+                        
                   </div>
 
             </div>
@@ -275,38 +244,32 @@
                         <div class="row">
                               <div class="col-md-4"></div>
                               <div class="col-md-6">
-                                    <form action="" name="contact-form" id="contact-form" method="POST">
 
+                                    <form action="{{route('saveSend')}}" name="contact-form" id="contact-form" method="post">
+                                          @csrf
                                           <ul>
-
                                                 <li class="wow fadeInUp" data-wow-delay="0.6s">
                                                       <label for="contact-name">Name :</label>
                                                       <div class="textarea">
-                                                            <input type="text" name="contact-name" id="contact-name" value="" required>
+                                                            <input type="text" name="name" id="contact-name" required>
                                                       </div>
                                                 </li>
-
                                                 <br>
-
                                                 <li class="wow fadeInUp" data-wow-delay="0.7s">
                                                       <label for="contact-email">E-mail :</label>
                                                       <div class="textarea">
-                                                            <input type="email" name="contact-email" id="contact-email" value="" required>
+                                                            <input type="email" name="email" id="contact-email" required>
                                                       </div>
                                                 </li>
-
                                                 <br>
-
                                                 <li class="wow fadeInUp" data-wow-delay="0.8s">
                                                      <label for="contact-project">Message :</label> 
                                                      <div class="textarea">
-                                                     <textarea name="contact-project" id="contact-project" rows="6" required></textarea>
+                                                     <textarea name="message" id="contact-project" rows="6" required></textarea>
                                                      </div>
                                                 </li>
-
                                           </ul>
-
-                                          <button type="submit" name="contact-submit" id="contact-submit" class="send wow fadeInUp" data-wow-delay="0.9s"><a href="mailto:fahrisyam141491@gmail.com" class="mailtu"> Send Message</a></button>
+                                          <button type="submit" name="contact-submit" id="contact-submit" class="send wow fadeInUp" data-wow-delay="0.9s">Send</button>
 
                                     </form>
                               </div>
@@ -315,6 +278,34 @@
                   </div>
 
             </section>
+
+            <a name="berita"></a>
+
+           <section class="story">
+      
+
+                  <div class="container-fluid">
+
+                        <div class="section-data">
+
+                              <div class="row">
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-2 section-index wow fadeInUp" data-wow-delay="0.3s">05</div>
+                                    <div class="col-md-8 section-heading wow fadeInUp" data-wow-delay="0.4s">{{ \App\Berita::where('id', 1)->value('judul') }}</div>
+                              </div>
+
+                              <div class="row">
+                                    <div class="col-md-4"></div>
+                                    <div class="col-md-6 section-info wow fadeInUp" data-wow-delay="0.6s">
+                                          {{ \App\Berita::where('id',1)->value('isi') }}
+                                    </div>
+                              </div>
+
+                        </div>
+
+                  </div>
+
+           </section>
 
             <!--------------- footer starts here --------------->
 
@@ -350,7 +341,7 @@
 
                                     <div class="col-md-4 wow fadeInUp" data-wow-delay="0.5s" id="mail">
                                           <p>Say Hello To</p>
-                                          <h4> fahrisyam141491@gmail.com</h4>
+                                          <h4>US</h4>
 
                                           <br><br>
                                     </div>
@@ -372,3 +363,5 @@
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 </body>
 </html>
+
+

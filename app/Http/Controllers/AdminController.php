@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Berita;
 use App\About;
+use App\Service;
+use App\Team;
+use App\Contact;
 use Auth;
 
 class AdminController extends Controller
@@ -106,4 +109,74 @@ class AdminController extends Controller
     	About::where('id',$id)->delete();
     	return redirect(url('admin/about'));
     }
+
+    // Service
+    public function service(){
+        $result = Service::all();
+        // dd($result);
+        return view('admin.service.index',compact($result, 'result'));
+    }
+    public function createService(){
+        return view('admin.service.create');
+    }
+    public function saveService(Request $request){
+        Service::insert([
+            'judul' => $request->judul,
+            'isi' => $request->isi
+        ]);
+        return redirect(url('admin/service'));
+    }
+    public function editService($id){
+        $result = Service::find($id);
+        return view('admin.service.edit',compact('result'));
+    }
+     public function updateService($id,Request $request){
+        Service::where('id',$id)->update([   
+            'ser1' => $request->ser1,
+            'ser2' => $request->ser2,
+            'ser3' => $request->ser3,
+            'ser4' => $request->ser4
+        ]);
+        return redirect(url('admin/service'));
+    }
+    public function deleteService($id){
+        Service::where('id',$id)->delete();
+        return redirect(url('admin/service'));
+    }
+
+     // Contact
+    public function contact(){
+        $result = Contact::all();
+        // dd($result);
+        return view('admin.contact.index',compact($result, 'result'));
+    }
+    public function createContact(){
+        return view('admin.contact.create');
+    }
+    public function saveContact(Request $request){
+        Service::insert([
+            'name' => $request->ser1,
+            'email' => $request->ser2,
+            'message' => $request->ser3,
+            
+        ]);
+        return redirect(url('admin/service'));
+    }
+    // public function editService($id){
+    //     $result = Service::find($id);
+    //     return view('admin.service.edit',compact('result'));
+    // }
+    //  public function updateService($id,Request $request){
+    //     Service::where('id',$id)->update([   
+    //         'ser1' => $request->ser1,
+    //         'ser2' => $request->ser2,
+    //         'ser3' => $request->ser3,
+    //         'ser4' => $request->ser4
+    //     ]);
+    //     return redirect(url('admin/service'));
+    // }
+    // public function deleteService($id){
+    //     Service::where('id',$id)->delete();
+    //     return redirect(url('admin/service'));
+    // }
 }

@@ -18,6 +18,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <script src="https://cdn.ckeditor.com/4.12.1/standard/ckeditor.js"></script>
 </head>
 <body>
     <div id="app">
@@ -58,7 +59,7 @@
                                 </li>
                                 
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('adminServices') }}">Services</a>
+                                    <a class="nav-link" href="{{ route('adminService') }}">Services</a>
                                 </li>
 
                                 <li class="nav-item">
@@ -100,5 +101,6 @@
             @yield('content')
         </main>
     </div>
+     <script src="//cdn.ckeditor.com/4.12.1/full/ckeditor.js"></script>
 </body>
 </html>

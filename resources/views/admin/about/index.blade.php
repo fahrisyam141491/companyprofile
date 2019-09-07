@@ -4,7 +4,7 @@ Dashboard
 @endsection
 @section('content')
 <div class="container">
-  <!-- <a href="{{route('adminCreateAbout')}}" class="btn btn-primary">Tambah Data</a> -->
+  <a href="{{route('adminCreateAbout')}}" class="btn btn-primary">Tambah Data</a>
   <br>
   <br>
   <table class="table">
@@ -24,6 +24,7 @@ Dashboard
       <td>{{ \App\User::where('id',$value->created_by)->value('name') }}</td>
       <td>
         <a href="{{route('adminEditAbout',$value->id)}}" class="btn btn-warning btn-sm">Ubah</a>
+        <a href="{{route('adminDeleteAbout',$value->id)}}" class="btn btn-danger btn-sm">Hapus</a>
       </td>
     </tr>
     @endforeach

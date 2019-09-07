@@ -19,6 +19,7 @@ Route::get('/', 'CPController@index');
 
 Route::get('admin','AdminController@index')->name('adminIndex');
 
+Route::post('save','CPController@save')->name('saveSend');
 
 //about 
 Route::get('admin/about','AdminController@about')->name('adminAbout');
@@ -29,12 +30,12 @@ Route::post('admin/about/update/{id}','AdminController@updateAbout')->name('admi
 Route::get('admin/about/delete/{id}','AdminController@deleteAbout')->name('adminDeleteAbout');
 
 //services
-Route::get('admin/services','AdminController@services')->name('adminServices');
-Route::get('admin/services/create','AdminController@createServices')->name('adminCreateServices');
-Route::post('admin/services/save','AdminController@saveServices')->name('saveServices');
-Route::get('admin/services/edit/{id}','AdminController@editServices')->name('adminEditServices');
-Route::post('admin/services/update/{id}','AdminController@updateServices')->name('adminUpdateServices');
-Route::get('admin/services/delete/{id}','AdminController@deleteServices')->name('adminDeleteServices');
+Route::get('admin/service','AdminController@service')->name('adminService');
+Route::get('admin/service/create','AdminController@createService')->name('adminCreateService');
+Route::post('admin/service/save','AdminController@saveService')->name('saveService');
+Route::get('admin/service/edit/{id}','AdminController@editService')->name('adminEditService');
+Route::post('admin/service/update/{id}','AdminController@updateService')->name('adminUpdateService');
+Route::get('admin/service/delete/{id}','AdminController@deleteService')->name('adminDeleteService');
 
 //team
 Route::get('admin/team','AdminController@team')->name('adminTeam');
