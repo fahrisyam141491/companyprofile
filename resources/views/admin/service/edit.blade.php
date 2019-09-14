@@ -7,23 +7,20 @@ Dashboard
 <form method="POST" action="{{route('adminUpdateService',$result->id)}}">
   @csrf
   <div class="form-group">
-    <label for="exampleInputEmail1">Service 1</label>
-    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="ser1" required value="{{$result->ser1}}">
+    <label for="exampleInputEmail1">Judul</label>
+    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="judul" value="{{$result->judul}}" required>
   </div>
-  <div class="form-group">
-    <label for="exampleInputEmail1">Service 2</label>
-    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="ser2" required value="{{$result->ser2}}">
-  </div>
-  <div class="form-group">
-    <label for="exampleInputEmail1">Service 3</label>
-    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="ser3" required value="{{$result->ser3}}">
-  </div>
-  <div class="form-group">
-    <label for="exampleInputEmail1">Service 4</label>
-    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="ser4" required value="{{$result->ser4}}">
-  </div>
-
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <textarea id="post_regulasi" name="isi" class="input-block-level ckeditor" rows="10" placeholder="Masukan Tracking Regulasi">{{$result->isi}}</textarea>
+  <br>
+  <button type="submit" class="btn btn-primary btn-block">Submit</button>
 </form>
 </div>  
+
+<script type="text/javascript">
+  CKEDITOR.replace( 'messageArea',
+  {
+    customConfig : 'config.js',
+    toolbar : 'simple'
+  })
+</script> 
 @endsection 

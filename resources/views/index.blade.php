@@ -160,33 +160,25 @@
                               <div class="col-md-2 section-index wow fadeInUp" data-wow-delay="0.3s">03</div>
                               <div class="col-md-8 section-heading wow fadeInUp" data-wow-delay="0.4s">Our team</div>
                         </div>
-
+                        @foreach(\App\Team::all() as $key => $value)
                         <div class="row members">
 
                               <div class="col-md-4"></div>
 
                               <div class="col-md-3 wow fadeInUp" data-wow-delay="0.5s">
                                     <div class="team-member">
-                                          <div class="team-img team-one"></div>
+                                          <div>
+                                                {!! $value->pic !!}
+                                          </div>
                                     </div>
                                     <div class="team-title">
-                                          <h5>Fahri Syamsudin</h5>
-                                          <span>Founder & CEO</span>
+                                          <h5>{{$value->name}}</h5>
+                                          <span>{{$value->position}}</span>
+                                          <p>{{$value->birth}}</p>
                                     </div>
                               </div>
-
-                              <div class="col-md-3 wow fadeInUp" data-wow-delay="0.6s">
-                                          <div class="team-member">
-                                                <div class="team-img team-two"></div>
-                                          </div>
-                                          <div class="team-title">
-                                                <h5>Farhan Syamsudin</h5>
-                                                <span>Co-Founder</span>
-                                          </div>
-                                    </div>
-
                         </div>
-
+                        @endforeach
                   </div>
 
             </section>
@@ -361,7 +353,66 @@
 
 
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script type="text/javascript">
+      // navigation starts here
+$("#toggle").click(function() {
+    $(this).toggleClass('on');
+    $("#resize").toggleClass("active");
+});
+$("#resize ul li a").click(function() {
+    $(this).toggleClass('on');
+    $("#resize").toggleClass("active");
+});
+$(".close-btn").click(function() {
+    $(this).toggleClass('on');
+    $("#resize").toggleClass("active");
+});
+
+$(function () {
+$(document).scroll(function () {
+var $nav = $(".nav");
+$nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
+});
+});
+
+new WOW().init();
+
+// Select all links with hashes
+$('a[href*="#"]')
+// Remove links that don't actually link to anything
+.not('[href="#"]')
+.not('[href="#0"]')
+.click(function(event) {
+// On-page links
+if (
+location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') 
+&& 
+location.hostname == this.hostname
+) {
+// Figure out element to scroll to
+var target = $(this.hash);
+target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+// Does a scroll target exist?
+if (target.length) {
+// Only prevent default if animation is actually gonna happen
+event.preventDefault();
+$('html, body').animate({
+  scrollTop: target.offset().top
+}, 1000, function() {
+  // Callback after animation
+  // Must change focus!
+  var $target = $(target);
+  $target.focus();
+  if ($target.is(":focus")) { // Checking if the target was focused
+    return false;
+  } else {
+    $target.attr('tabindex','-1'); // Adding tabindex for elements not focusable
+    $target.focus(); // Set focus again
+  };
+});
+}
+}
+});
+</script>
 </body>
 </html>
-
-

@@ -132,10 +132,8 @@ class AdminController extends Controller
     }
      public function updateService($id,Request $request){
         Service::where('id',$id)->update([   
-            'ser1' => $request->ser1,
-            'ser2' => $request->ser2,
-            'ser3' => $request->ser3,
-            'ser4' => $request->ser4
+            'judul' => $request->judul,
+            'isi' => $request->isi,
         ]);
         return redirect(url('admin/service'));
     }
@@ -145,22 +143,79 @@ class AdminController extends Controller
     }
 
      // Contact
+
     public function contact(){
         $result = Contact::all();
-        // dd($result);
         return view('admin.contact.index',compact($result, 'result'));
     }
     public function createContact(){
         return view('admin.contact.create');
     }
     public function saveContact(Request $request){
-        Service::insert([
+        Contact::insert([
             'name' => $request->name,
             'email' => $request->email,
-            'message' => $request->message,
-            
+            'message' => $request->message
         ]);
-        return redirect(url('admin/service'));
+        return redirect(url('admin/contact'));
     }
-    
+    public function editContact($id)
+    {
+        $result = Contact::find($id);
+        return view('admin.contact.edit',compact('result'));
+    }
+    public function updateContact($id, Request $request)
+    {
+        Contact::where('id',$id)->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'message' => $request->message
+        ]);
+        return redirect(url('admin/contact'));
+    }
+    public function deleteContact($id)
+    {
+        Contact::where('id',$id)->delete();
+        return redirect(url('admin/contact'));
+    }
+
+     // Team
+
+    public function team(){
+        $result = Team::all();
+        return view('admin.team.index',compact($result, 'result'));
+    }
+    public function createTeam(){
+        return view('admin.team.create');
+    }
+    public function saveTeam(Request $request)
+    {
+        Team::insert([
+            'name' => $request->name,
+            'birth' => $request->birth,
+            'position' => $request->position,
+            'pic' => $request->pic
+        ]);
+        return redirect(url('admin/team'));
+    }
+    public function editTeam($id)
+    {
+        $result = Team::find($id);
+        return view('admin.team.edit',compact('result'));
+    }
+    public function updateTeam($id, Request $request)
+    {
+        Team::where('id',$id)->update([
+            'name' => $request->name,
+            'birth' => $request->birth,
+            'position' => $request->position,
+            'pic' => $request->pic
+        ]);
+        return redirect(url('admin/team'));
+    }
+    public function deleteTeam($id)
+    {
+        Team::where('id',$id)->delete();
+        return redirect(url('admin/team'));
+    }
 }
