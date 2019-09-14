@@ -155,28 +155,12 @@ class AdminController extends Controller
     }
     public function saveContact(Request $request){
         Service::insert([
-            'name' => $request->ser1,
-            'email' => $request->ser2,
-            'message' => $request->ser3,
+            'name' => $request->name,
+            'email' => $request->email,
+            'message' => $request->message,
             
         ]);
         return redirect(url('admin/service'));
     }
-    // public function editService($id){
-    //     $result = Service::find($id);
-    //     return view('admin.service.edit',compact('result'));
-    // }
-    //  public function updateService($id,Request $request){
-    //     Service::where('id',$id)->update([   
-    //         'ser1' => $request->ser1,
-    //         'ser2' => $request->ser2,
-    //         'ser3' => $request->ser3,
-    //         'ser4' => $request->ser4
-    //     ]);
-    //     return redirect(url('admin/service'));
-    // }
-    // public function deleteService($id){
-    //     Service::where('id',$id)->delete();
-    //     return redirect(url('admin/service'));
-    // }
+    
 }
